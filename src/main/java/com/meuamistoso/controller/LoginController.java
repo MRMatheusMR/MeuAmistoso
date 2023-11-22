@@ -1,7 +1,7 @@
-package main.java.com.meuamistoso.controller;
+package com.meuamistoso.controller;
 
-import main.java.com.meuamistoso.dao.UsuarioDAO;
-import main.java.com.meuamistoso.model.Usuario;
+import com.meuamistoso.dao.UsuarioDAO;
+import com.meuamistoso.model.Usuario;
 
 public class LoginController {
     //Valida o Login

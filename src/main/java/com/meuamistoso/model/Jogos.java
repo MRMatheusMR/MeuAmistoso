@@ -2,13 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package meuamistoso.model;
+package com.meuamistoso.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  *
@@ -18,9 +20,14 @@ public class Jogos {
     private int id;
     public String nomeDoOrganizador;
     public String localDoJogo;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     public Date dataDoJogo;
     public int numeroDeJogadores;
     public String descricao;
+
+    public Jogos() {
+        // Pode deixar vazio ou adicionar inicializações padrão se necessário
+    }
 
 
 //Cria construtor com todos os parametros, mas sem descricao

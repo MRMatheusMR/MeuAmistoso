@@ -1,17 +1,17 @@
-package main.java.com.meuamistoso.controller;
+package com.meuamistoso.controller;
 
-import main.java.com.meuamistoso.dao.JogosDAO;
-import main.java.com.meuamistoso.model.Jogos;
+import com.meuamistoso.dao.JogosDAO;
+import com.meuamistoso.model.Jogos;
 import java.util.ArrayList;
 
 
 
 public class ListaJogosController {
-    public void atualizarTabela() {
+    public ArrayList<Jogos> getJogos() {
         //Buscar Lista de Jogos no banco de dados
         JogosDAO jogosDAO = new JogosDAO();
-        ArrayList<Jogos> jogos = jogosDAO.selectAll();
         System.out.println("Jogos listados com sucesso");
+        return jogosDAO.selectAll();
         // listarJogos(jogos);
     }
 }

@@ -1,8 +1,18 @@
-package main.java.com.meuamistoso;
+package com.meuamistoso;
+
+import java.util.ArrayList;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
+
+import com.meuamistoso.model.Jogos;
+
+// Listar jogos
+import com.meuamistoso.controller.ListaJogosController;
+
+// Criar jogo
+import com.meuamistoso.controller.CriarJogoController;
 
 @SpringBootApplication
 @RestController
@@ -11,11 +21,14 @@ public class JogoApplication {
     public static void main(String[] args) {
         SpringApplication.run(JogoApplication.class, "--server.port=40125");
     }
+    
+    @PostMapping("/criarjogo")
+    public String criaJogo(@RequestBody Jogos jogoRequest) {
+        System.out.println("Endpoint: /criarjogo");
+        System.out.println("Parâmetros recebidos: " + jogoRequest);
 
-    @PostMapping("/criajogo")
-    public String criaJogo(@RequestBody String requestBody) {
-        System.out.println("Endpoint: /criajogo");
-        System.out.println("Parâmetros recebidos: " + requestBody);
+        
+        
         return "Jogo criado com sucesso!";
     }
 
@@ -27,9 +40,11 @@ public class JogoApplication {
     }
 
     @GetMapping("/listarjogos")
-    public String listarJogos() {
-        System.out.println("Endpoint: /listarjogos");
-        return "Lista de jogos";
+    public ArrayList<Jogos> listarJogos() {
+        ListaJogosController listajogos = new ListaJogosController();
+        System.out.println("Endpoint: /listarjogos");   
+        System.out.println(listajogos.getJogos());
+        return listajogos.getJogos();
     }
 
     @PostMapping("/registrar")

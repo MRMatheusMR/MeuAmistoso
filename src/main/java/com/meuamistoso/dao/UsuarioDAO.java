@@ -1,6 +1,6 @@
-package main.java.com.meuamistoso.dao;
+package com.meuamistoso.dao;
 
-import main.java.com.meuamistoso.model.Usuario;
+import com.meuamistoso.model.Usuario;
 import java.util.ArrayList;
 
 /**
@@ -54,6 +54,11 @@ public class UsuarioDAO {
      * @return uma lista com todos os registros do banco
      */
     public ArrayList<Usuario> selectAll(){
+        // Inicia banco de dados
+        if (Banco.jogos == null) {
+            Banco.inicia();
+        }
+
         return Banco.usuario;
     }
     

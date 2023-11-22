@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.meuamistoso.dao;
+package com.meuamistoso.dao;
 
-import main.java.com.meuamistoso.model.Jogos;
-import main.java.com.meuamistoso.model.Usuario;
+import com.meuamistoso.model.Jogos;
+import com.meuamistoso.model.Usuario;
 import java.util.ArrayList;
 
 /**

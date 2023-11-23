@@ -10,7 +10,6 @@ public class ListaJogosController {
     public ArrayList<Jogos> getJogos() {
         //Buscar Lista de Jogos no banco de dados
         JogosDAO jogosDAO = new JogosDAO();
-        System.out.println("Jogos listados com sucesso");
         return jogosDAO.selectAll();
         // listarJogos(jogos);
     }

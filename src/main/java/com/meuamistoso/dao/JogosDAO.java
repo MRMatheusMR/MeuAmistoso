@@ -15,7 +15,15 @@ public class JogosDAO {
      * @param jogos exige que seja passado um objeto do tipo jogos
      */
     public void insert(Jogos jogos){
+
+        // Inicia banco de dados
+        if (Banco.jogos == null) {
+            Banco.inicia();
+        }
+
         Banco.jogos.add(jogos);
+        System.out.println("CHAMOU");
+        System.out.println(jogos);
     }
     
     /**

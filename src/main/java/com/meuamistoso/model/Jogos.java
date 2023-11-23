@@ -25,10 +25,8 @@ public class Jogos {
     public int numeroDeJogadores;
     public String descricao;
 
-    public Jogos() {
-        // Pode deixar vazio ou adicionar inicializações padrão se necessário
-    }
-
+    // Construtor padrão vazio exigido por Jackson
+    public Jogos() {}
 
 //Cria construtor com todos os parametros, mas sem descricao
     public Jogos(int id, String nomeDoOrganizador, String localDoJogo, String dataDoJogo, int numeroDeJogadores ) {
@@ -41,17 +39,15 @@ public class Jogos {
             Logger.getLogger(Jogos.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.numeroDeJogadores = numeroDeJogadores;   
+        this.descricao = "Nenhuma";
     }
+
 //Cria construtor com todos os parametros e a descricao
-    public Jogos(int id, String nomeDoOrganizador, String localDoJogo, String dataDoJogo, int numeroDeJogadores, String descricao) {
-    this.id = id;
+    public Jogos(int id, String nomeDoOrganizador, String localDoJogo, Date dataDoJogo, int numeroDeJogadores, String descricao) {
+        this.id = id;
         this.nomeDoOrganizador = nomeDoOrganizador;
         this.localDoJogo = localDoJogo;
-        try {
-            this.dataDoJogo = new SimpleDateFormat("dd/MM/yyyy").parse(dataDoJogo);
-        } catch (ParseException ex) {
-            Logger.getLogger(Jogos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.dataDoJogo = dataDoJogo;
         this.numeroDeJogadores = numeroDeJogadores;
         this.descricao = descricao;
     }
@@ -83,10 +79,6 @@ public class Jogos {
 
     public Date getDataDoJogo() {
         return dataDoJogo;
-    }
-    
-    public String getDataFormatada(){
-    return new SimpleDateFormat("dd/MM/yyyy").format(dataDoJogo);
     }
 
     public void setDataDoJogo(Date dataDoJogo) {

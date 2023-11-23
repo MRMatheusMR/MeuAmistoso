@@ -1,16 +1,18 @@
 package com.meuamistoso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.meuamistoso.model.Jogos;
 
 // Listar jogos
 import com.meuamistoso.controller.ListaJogosController;
-
 // Criar jogo
 import com.meuamistoso.controller.CriarJogoController;
 
@@ -23,13 +25,32 @@ public class JogoApplication {
     }
     
     @PostMapping("/criarjogo")
-    public String criaJogo(@RequestBody Jogos jogoRequest) {
-        System.out.println("Endpoint: /criarjogo");
-        System.out.println("Parâmetros recebidos: " + jogoRequest);
+    public String criaJogo(@RequestBody String requestBody) {
+        try {
+            System.out.println("Endpoint: /criarjogo");
+            System.out.println("Parâmetros recebidos: " + requestBody);
 
-        
-        
-        return "Jogo criado com sucesso!";
+            // Converta a string JSON em um objeto Jogo
+            ObjectMapper objectMapper = new ObjectMapper();
+            Jogos jogos = objectMapper.readValue(requestBody, Jogos.class);
+
+            // Agora você pode acessar os atributos do objeto Jogo
+            Integer id = jogos.getId();
+            String nomeDoOrganizador = jogos.getNomeDoOrganizador();
+            String localDoJogo = jogos.getLocalDoJogo();
+            Date dataDoJogo = jogos.getDataDoJogo();
+            Integer numeroDeJogadores = jogos.getNumeroDeJogadores();
+            String descricao = jogos.getDescricao();
+
+            CriarJogoController criarjogo = new CriarJogoController();
+
+            criarjogo.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
+
+            return "Jogo criado com sucesso!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Erro ao processar a solicitação.";
+        }
     }
 
     @PostMapping("/login")

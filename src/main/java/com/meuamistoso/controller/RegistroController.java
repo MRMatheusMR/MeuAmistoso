@@ -9,12 +9,6 @@ public class RegistroController {
         //Pega os dados inseridos na View
         Usuario usuario = new Usuario(0, email, senha, nome);
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.insert(usuario);
-        Usuario usuarioCriado = usuarioDAO.selectPorEmailESenha(usuario);
-        if (usuarioCriado != null) {
-            return "Usuario registrado";
-        } else {
-            return "Usuario nao registrado";
-        }
+        return usuarioDAO.insert(usuario);
     }
 }

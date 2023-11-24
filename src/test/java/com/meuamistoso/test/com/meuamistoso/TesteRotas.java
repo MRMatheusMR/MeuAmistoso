@@ -33,7 +33,7 @@ public class TesteRotas {
         Date minhaData = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String minhaDataFormatada = formato.format(minhaData);
-        Jogos jogo = new Jogos(7, "Organizador Teste", "Local Teste", minhaDataFormatada, 11, "Descrição do Jogo");
+        Jogos jogo = new Jogos(8, "Organizador Teste", "Local Testeee", minhaDataFormatada, 11, "Descrição do Jogo");
 
         // Converte o objeto Jogo para uma string JSON
         ObjectMapper objectMapper = new ObjectMapper();
@@ -129,7 +129,7 @@ public class TesteRotas {
     @Test
     public void testRegistrarEndpoint() throws Exception {
         // Cria um objeto Usuario para enviar no corpo da solicitação
-        Usuario usuario = new Usuario(0,"email@teste.teste", "Senha@123", "NomeUsuario");
+        Usuario usuario = new Usuario(0,"email@testeee.teste", "Senha@123", "NomeUsuario");
 
         // Converte o objeto Usuario para uma string JSON
         ObjectMapper objectMapper = new ObjectMapper();

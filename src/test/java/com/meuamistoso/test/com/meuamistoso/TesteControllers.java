@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TesteControllers {
 
-   @Test
+    @Test
     public void testCriarJogo() {
         // Cria uma instância do CriarJogoController
         CriarJogoController criarJogoController = new CriarJogoController();
@@ -51,6 +51,25 @@ public class TesteControllers {
         assertEquals(dataDoJogo, jogoCriado.getDataDoJogo());
         assertEquals(numeroDeJogadores, jogoCriado.getNumeroDeJogadores());
         assertEquals(descricao, jogoCriado.getDescricao());
+    }
+
+    @Test
+    public void testCriarJogoMesmoLocal() {
+        // Cria uma instância do CriarJogoController
+        CriarJogoController criarJogoController = new CriarJogoController();
+
+        // Define valores de teste
+        int id = 7; // colocar id valido 7 ou 8 - proximo id disponivel no banco de dados - id 7 criado no teste de rotas ao executar todos os testes
+        String nomeDoOrganizador = "Organizador Teste";
+        String localDoJogo = "Quadra Anhembi Mooca";
+        String minhaDataFormatada = "08/07/2022";
+        String dataDoJogo = minhaDataFormatada;
+        int numeroDeJogadores = 11;
+        String descricao = "Descrição do Jogo de Teste";
+
+        // Chama o método criarJogo
+        String jogocriado = criarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
+        assertEquals(jogocriado, "Ja existe um jogo no mesmo local e data.");
     }
 
     @Test
@@ -101,7 +120,7 @@ public class TesteControllers {
 
     }
 
-     @Test
+    @Test
     public void testRegistrarNoSistema() {
         // Cria uma instância do RegistroController
         RegistroController registroController = new RegistroController();
@@ -120,6 +139,38 @@ public class TesteControllers {
         assertEquals(email, usuarioRegistrado.getEmail());
         assertEquals(senha, usuarioRegistrado.getSenha());
         assertEquals(registrado, "Usuario registrado");
+    }
+
+    @Test
+    public void testRegistrarMesmoUsernameNoSistema() {
+        // Cria uma instância do RegistroController
+        RegistroController registroController = new RegistroController();
+
+        // Define valores de teste
+        String nome = "Teste";
+        String email = "email@testee.teste";
+        String senha = "Senha@123";
+
+        // Chama o método registrarNoSistema
+        String registrado = registroController.registrarNoSistema(nome, email, senha);
+
+        assertEquals(registrado, "Usuario nao registrado");
+    }
+
+    @Test
+    public void testRegistrarMesmoEmailNoSistema() {
+        // Cria uma instância do RegistroController
+        RegistroController registroController = new RegistroController();
+
+        // Define valores de teste
+        String nome = "Testee";
+        String email = "email@teste.teste";
+        String senha = "Senha@123";
+
+        // Chama o método registrarNoSistema
+        String registrado = registroController.registrarNoSistema(nome, email, senha);
+        System.out.println(registrado);
+        assertEquals(registrado, "Usuario nao registrado");
     }
 
 }

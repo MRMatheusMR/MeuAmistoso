@@ -14,8 +14,9 @@ public class UsuarioDAO {
     /**
      * Insere um usuario dentro do banco de dados
      * @param usuario exige que seja passado um objeto do tipo usuario
+     * @return 
      */
-    public void insert(Usuario usuario){
+    public String insert(Usuario usuario){
 
         // Inicia banco de dados
         if (Banco.usuario == null) {
@@ -25,22 +26,24 @@ public class UsuarioDAO {
         // Verifica se a senha atende aos critérios
         if (!validarSenha(usuario.getSenha())) {
             System.out.println("A senha não atende aos critérios de segurança.");
-            return;
+            return "Usuario nao registrado";
         }
 
         // Verifica se já existe um usuario com mesmo username
         if (usernameExistente(usuario)) {
             System.out.println("Já existe um usuario com esse Username.");
-            return;
+            return "Usuario nao registrado";
         }
 
         // Verifica se já existe um usuario com mesmo email
         if (emailExistente(usuario)) {
             System.out.println("Já existe um usuario com esse Email.");
-            return;
+            return "Usuario nao registrado";
         }
 
         Banco.usuario.add(usuario);
+        
+        return "Usuario registrado";
     }
     
     /**

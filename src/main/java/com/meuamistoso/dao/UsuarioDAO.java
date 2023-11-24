@@ -1,6 +1,5 @@
 package com.meuamistoso.dao;
 
-import com.meuamistoso.model.Jogos;
 import com.meuamistoso.model.Usuario;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -100,6 +99,7 @@ public class UsuarioDAO {
                 return usuarioLista;
             }
         }
+        
         return null;
     }
 

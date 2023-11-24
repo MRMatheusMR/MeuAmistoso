@@ -1,4 +1,4 @@
-package com.meuamistoso.test;
+package com.meuamistoso.test.com.meuamistoso;
 
 import com.meuamistoso.controller.CriarJogoController;
 import com.meuamistoso.controller.ListaJogosController;
@@ -17,9 +17,8 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
 
-public class TesteMinhaClasse {
+public class TesteControllers {
 
    @Test
     public void testCriarJogo() {
@@ -27,7 +26,7 @@ public class TesteMinhaClasse {
         CriarJogoController criarJogoController = new CriarJogoController();
 
         // Define valores de teste
-        int id = 100;
+        int id = 8; // colocar id valido 7 ou 8 - proximo id disponivel no banco de dados - id 7 criado no teste de rotas ao executar todos os testes
         String nomeDoOrganizador = "Organizador Teste";
         String localDoJogo = "Local Teste";
         Date dataDoJogo = new Date(); // Pode ajustar conforme necessário
@@ -76,12 +75,12 @@ public class TesteMinhaClasse {
         LoginController loginController = new LoginController();
 
         // Define valores de teste
-        String email = "usuario@teste.com";
-        String senha = "senha123";
+        String email = "email@teste.teste";
+        String senha = "Senha@123";
 
         // Chama o método logarNoSistema
-        loginController.logarNoSistema(email, senha);
-
+        String logado = loginController.logarNoSistema(email, senha);
+        assertEquals(logado, "Usuario foi logado no sistema");
     }
 
     @Test
@@ -106,16 +105,17 @@ public class TesteMinhaClasse {
         // Define valores de teste
         String nome = "Novo Usuario";
         String email = "novo.usuario@teste.com";
-        String senha = "senha123";
+        String senha = "Senha@123";
 
         // Chama o método registrarNoSistema
-        registroController.registrarNoSistema(nome, email, senha);
+        String registrado = registroController.registrarNoSistema(nome, email, senha);
 
         Usuario usuarioRegistrado = new UsuarioDAO().findByEmail(email);
         assertNotNull(usuarioRegistrado);
         assertEquals(nome, usuarioRegistrado.getNome());
         assertEquals(email, usuarioRegistrado.getEmail());
         assertEquals(senha, usuarioRegistrado.getSenha());
+        assertEquals(registrado, "Usuario registrado");
     }
 
 }

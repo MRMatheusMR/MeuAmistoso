@@ -31,8 +31,6 @@ public class JogosDAO {
         jogos.setId(novoId);
     
         Banco.jogos.add(jogos);
-        System.out.println("CHAMOU");
-        System.out.println(jogos);
     }
     
     // Método para obter o próximo ID disponível

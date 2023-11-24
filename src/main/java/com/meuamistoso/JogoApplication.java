@@ -68,12 +68,11 @@ public class JogoApplication {
             // Agora você pode acessar os atributos do objeto Jogo
             String email = usuario.getEmail();
             String senha = usuario.getSenha();
-    
+            
             LoginController login = new LoginController();
+            
+            return login.logarNoSistema(email, senha);
     
-            login.logarNoSistema(email, senha);
-    
-            return "Login realizado com sucesso!";
         } catch (Exception e) {
             e.printStackTrace();
             return "Erro ao processar a solicitação.";
@@ -105,9 +104,8 @@ public class JogoApplication {
     
             RegistroController registro = new RegistroController();
     
-            registro.registrarNoSistema(nome, email, senha);
+            return registro.registrarNoSistema(nome, email, senha);
     
-            return "Registro realizado com sucesso!";
         } catch (Exception e) {
             e.printStackTrace();
             return "Erro ao processar a solicitação.";

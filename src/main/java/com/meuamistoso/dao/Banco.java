@@ -34,6 +34,7 @@ public class Banco {
         Usuario usuario3 = new Usuario(3, "Felipe","felipe@anhembi.br", "12345678");
         Usuario usuario4 = new Usuario(4, "Igor", "igor@anhembi.br", "12345678");
         Usuario usuario5 = new Usuario(5, "Matheus","matheus@anhembi.br", "12345678");
+        Usuario usuario6 = new Usuario(6, "email@teste.teste","Senha@123", "Teste");
          
         // Lista de Jogos
         Jogos jogos1 = new Jogos(1, "Joaozinho", "Salao de Futsal Aleatorio 1", "12/10/2022", 12);
@@ -49,6 +50,7 @@ public class Banco {
         usuario.add(usuario3);
         usuario.add(usuario4);
         usuario.add(usuario5);           
+        usuario.add(usuario6);           
         
         jogos.add(jogos1);
         jogos.add(jogos2);

@@ -14,6 +14,7 @@ import com.meuamistoso.model.Usuario;
 // Listar jogos
 import com.meuamistoso.controller.ListaJogosController;
 import com.meuamistoso.controller.LoginController;
+import com.meuamistoso.controller.RegistroController;
 // Criar jogo
 import com.meuamistoso.controller.CriarJogoController;
 
@@ -89,8 +90,27 @@ public class JogoApplication {
 
     @PostMapping("/registrar")
     public String registrar(@RequestBody String requestBody) {
-        System.out.println("Endpoint: /registrar");
-        System.out.println("Parâmetros recebidos: " + requestBody);
-        return "Registro realizado com sucesso!";
+        try {
+            System.out.println("Endpoint: /registrar");
+            System.out.println("Parâmetros recebidos: " + requestBody);
+    
+            // Converta a string JSON em um objeto Jogo
+            ObjectMapper objectMapper = new ObjectMapper();
+            Usuario usuario = objectMapper.readValue(requestBody, Usuario.class);
+    
+            // Agora você pode acessar os atributos do objeto Jogo
+            String nome = usuario.getNome();
+            String email = usuario.getEmail();
+            String senha = usuario.getSenha();
+    
+            RegistroController registro = new RegistroController();
+    
+            registro.registrarNoSistema(nome, email, senha);
+    
+            return "Registro realizado com sucesso!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Erro ao processar a solicitação.";
+        }
     }
 }

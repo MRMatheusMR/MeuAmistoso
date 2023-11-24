@@ -19,6 +19,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version> <!-- Ou a versão mais recente disponível -->
+            <scope>test</scope>
+        </dependency>
+        <!-- Outras dependências do seu projeto -->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

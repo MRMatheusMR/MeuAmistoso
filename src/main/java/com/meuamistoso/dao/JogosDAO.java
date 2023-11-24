@@ -21,6 +21,12 @@ public class JogosDAO {
             Banco.inicia();
         }
 
+        // Verifica se já existe um jogo no mesmo local e data
+        if (jogoExistente(jogos)) {
+            System.out.println("Já existe um jogo no mesmo local e data.");
+            return;
+        }
+
         Banco.jogos.add(jogos);
         System.out.println("CHAMOU");
         System.out.println(jogos);
@@ -80,6 +86,20 @@ public class JogosDAO {
      */
     private boolean idIguais(Jogos jogos, Jogos jogosAMarcar) {
         return jogos.getId() ==  jogosAMarcar.getId();
+    }
+
+    /**
+     * Verifica se já existe um jogo no mesmo local e data
+     * @param novoJogo
+     * @return true se já existe um jogo no mesmo local e data, false caso contrário
+     */
+    private boolean jogoExistente(Jogos novoJogo) {
+        for (Jogos jogo : Banco.jogos) {
+            if (jogo.getLocalDoJogo().equals(novoJogo.getLocalDoJogo()) && jogo.getDataDoJogo().equals(novoJogo.getDataDoJogo())) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }

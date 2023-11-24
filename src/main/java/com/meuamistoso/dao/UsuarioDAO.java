@@ -2,6 +2,8 @@ package com.meuamistoso.dao;
 
 import com.meuamistoso.model.Usuario;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -20,6 +22,18 @@ public class UsuarioDAO {
             Banco.inicia();
         }
 
+        // Verifica se a senha atende aos critérios
+        if (!validarSenha(usuario.getSenha())) {
+            System.out.println("A senha não atende aos critérios de segurança.");
+            return;
+        }
+
+        // Verifica se já existe um usuario com mesmo username
+        if (usernameExistente(usuario)) {
+            System.out.println("Já existe um jogo no mesmo local e data.");
+            return;
+        }
+
         Banco.usuario.add(usuario);
     }
     
@@ -29,7 +43,7 @@ public class UsuarioDAO {
      * @return 
      */
     public boolean update(Usuario usuario){
-        
+
         for (int i = 0; i < Banco.usuario.size(); i++) {
             if(idSaoIguais(Banco.usuario.get(i),usuario)){
                 Banco.usuario.set(i, usuario);
@@ -106,6 +120,36 @@ public class UsuarioDAO {
      */
     private boolean idSaoIguais(Usuario usuario, Usuario usuarioAComparar) {
         return usuario.getId() ==  usuarioAComparar.getId();
+    }
+
+    /**
+     * Verifica se já existe um usuario com mesmo username
+     * @param novoUsuario
+     * @return true se já existe um usuario com mesmo username, false caso contrário
+     */
+    private boolean usernameExistente(Usuario novoUsuario) {
+        for (Usuario usuario : Banco.usuario) {
+            if (usuario.getNome().equals(novoUsuario.getNome())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Valida se a senha atende aos critérios especificados:
+     * - Pelo menos 1 caractere especial
+     * - Pelo menos 1 letra maiúscula
+     * - Pelo menos 1 número
+     * - Mínimo de 6 e máximo de 10 caracteres
+     * @param senha A senha a ser validada
+     * @return true se a senha for válida, false caso contrário
+     */
+    public boolean validarSenha(String senha) {
+        String regex = "^(?=.*[!@#$%^&*(),.?\":{}|<>])(?=.*[A-Z])(?=.*[0-9]).{6,10}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(senha);
+        return matcher.matches();
     }
     
     

@@ -28,7 +28,7 @@ public class Jogos {
     // Construtor padrão vazio exigido por Jackson
     public Jogos() {}
 
-//Cria construtor com todos os parametros, mas sem descricao
+    //Cria construtor com todos os parametros, mas sem descricao
     public Jogos(int id, String nomeDoOrganizador, String localDoJogo, String dataDoJogo, int numeroDeJogadores ) {
         this.id = id;
         this.nomeDoOrganizador = nomeDoOrganizador;
@@ -42,7 +42,7 @@ public class Jogos {
         this.descricao = "Nenhuma";
     }
 
-//Cria construtor com todos os parametros e a descricao
+    //Cria construtor com todos os parametros e a descricao
     public Jogos(int id, String nomeDoOrganizador, String localDoJogo, Date dataDoJogo, int numeroDeJogadores, String descricao) {
         this.id = id;
         this.nomeDoOrganizador = nomeDoOrganizador;

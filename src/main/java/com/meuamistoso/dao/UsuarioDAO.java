@@ -1,5 +1,6 @@
 package com.meuamistoso.dao;
 
+import com.meuamistoso.model.Jogos;
 import com.meuamistoso.model.Usuario;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -150,6 +151,15 @@ public class UsuarioDAO {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(senha);
         return matcher.matches();
+    }
+
+    public Usuario findByEmail(String email) {
+        for (Usuario usuario : Banco.usuario) {
+            if (usuario.getEmail() == email) {
+                return usuario;
+            }
+        }
+        return null; // Retorna null se o usuario com o Email fornecido não for encontrado
     }
     
     

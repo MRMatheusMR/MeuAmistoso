@@ -40,15 +40,14 @@ public class JogoApplication {
             Integer id = jogos.getId();
             String nomeDoOrganizador = jogos.getNomeDoOrganizador();
             String localDoJogo = jogos.getLocalDoJogo();
-            Date dataDoJogo = jogos.getDataDoJogo();
+            String dataDoJogo = jogos.getDataDoJogo();
             Integer numeroDeJogadores = jogos.getNumeroDeJogadores();
             String descricao = jogos.getDescricao();
 
             CriarJogoController criarjogo = new CriarJogoController();
 
-            criarjogo.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
+            return criarjogo.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
 
-            return "Jogo criado com sucesso!";
         } catch (Exception e) {
             e.printStackTrace();
             return "Erro ao processar a solicitação.";

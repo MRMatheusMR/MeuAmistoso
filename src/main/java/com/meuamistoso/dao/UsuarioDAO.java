@@ -30,7 +30,13 @@ public class UsuarioDAO {
 
         // Verifica se já existe um usuario com mesmo username
         if (usernameExistente(usuario)) {
-            System.out.println("Já existe um jogo no mesmo local e data.");
+            System.out.println("Já existe um usuario com esse Username.");
+            return;
+        }
+
+        // Verifica se já existe um usuario com mesmo email
+        if (emailExistente(usuario)) {
+            System.out.println("Já existe um usuario com esse Email.");
             return;
         }
 
@@ -131,6 +137,20 @@ public class UsuarioDAO {
     private boolean usernameExistente(Usuario novoUsuario) {
         for (Usuario usuario : Banco.usuario) {
             if (usuario.getNome().equals(novoUsuario.getNome())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Verifica se já existe um usuario com mesmo email
+     * @param novoUsuario
+     * @return true se já existe um usuario com mesmo email, false caso contrário
+     */
+    private boolean emailExistente(Usuario novoUsuario) {
+        for (Usuario usuario : Banco.usuario) {
+            if (usuario.getEmail().equals(novoUsuario.getEmail())) {
                 return true;
             }
         }

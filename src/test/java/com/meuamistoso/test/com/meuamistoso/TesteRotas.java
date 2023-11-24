@@ -2,6 +2,7 @@ package com.meuamistoso.test.com.meuamistoso;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,10 @@ public class TesteRotas {
     @Test
     public void testCriaJogoEndpoint() throws Exception {
         // Cria um objeto Jogo para enviar no corpo da solicitação
-        Jogos jogo = new Jogos(7, "Organizador Teste", "Local Teste", new Date(), 11, "Descrição do Jogo");
+        Date minhaData = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String minhaDataFormatada = formato.format(minhaData);
+        Jogos jogo = new Jogos(7, "Organizador Teste", "Local Teste", minhaDataFormatada, 11, "Descrição do Jogo");
 
         // Converte o objeto Jogo para uma string JSON
         ObjectMapper objectMapper = new ObjectMapper();
@@ -44,6 +48,26 @@ public class TesteRotas {
 
         // Verifica se a resposta contém a mensagem esperada
         assertEquals("Jogo criado com sucesso!", result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testCriaJogoMesmoLocalEndpoint() throws Exception {
+        // Cria um objeto Jogo para enviar no corpo da solicitação
+        Jogos jogo = new Jogos(7, "Organizador Teste", "Quadra Anhembi Mooca", "08/07/2022", 11);
+
+        // Converte o objeto Jogo para uma string JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(jogo);
+
+        // Realiza uma solicitação POST para o endpoint /criarjogo
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/criarjogo")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Verifica se a resposta contém a mensagem esperada
+        assertEquals("Ja existe um jogo no mesmo local e data.", result.getResponse().getContentAsString());
     }
 
     @Test
@@ -120,6 +144,46 @@ public class TesteRotas {
 
         // Verifica se a resposta contém a mensagem esperada
         assertEquals("Usuario registrado", result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testRegistrarMesmoUsernameEndpoint() throws Exception {
+        // Cria um objeto Usuario para enviar no corpo da solicitação
+        Usuario usuario = new Usuario(0,"email@testee.teste", "Senha@1234", "Teste"); // Teste é um username ja criado
+
+        // Converte o objeto Usuario para uma string JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(usuario);
+
+        // Realiza uma solicitação POST para o endpoint /registrar
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/registrar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Verifica se a resposta contém a mensagem esperada
+        assertEquals("Usuario nao registrado", result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testRegistrarMesmoEmailEndpoint() throws Exception {
+        // Cria um objeto Usuario para enviar no corpo da solicitação
+        Usuario usuario = new Usuario(0,"email@teste.teste", "Senha@1234", "Testee"); // email@teste.teste é um username ja criado
+
+        // Converte o objeto Usuario para uma string JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(usuario);
+
+        // Realiza uma solicitação POST para o endpoint /registrar
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/registrar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Verifica se a resposta contém a mensagem esperada
+        assertEquals("Usuario nao registrado", result.getResponse().getContentAsString());
     }
 
 }

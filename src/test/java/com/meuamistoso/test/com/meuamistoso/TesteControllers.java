@@ -11,6 +11,7 @@ import com.meuamistoso.model.Usuario;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,10 +27,13 @@ public class TesteControllers {
         CriarJogoController criarJogoController = new CriarJogoController();
 
         // Define valores de teste
-        int id = 8; // colocar id valido 7 ou 8 - proximo id disponivel no banco de dados - id 7 criado no teste de rotas ao executar todos os testes
+        int id = 7; // colocar id valido 7 ou 8 - proximo id disponivel no banco de dados - id 7 criado no teste de rotas ao executar todos os testes
         String nomeDoOrganizador = "Organizador Teste";
         String localDoJogo = "Local Teste";
-        Date dataDoJogo = new Date(); // Pode ajustar conforme necessário
+        Date minhaData = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String minhaDataFormatada = formato.format(minhaData);
+        String dataDoJogo = minhaDataFormatada;
         int numeroDeJogadores = 11;
         String descricao = "Descrição do Jogo de Teste";
 

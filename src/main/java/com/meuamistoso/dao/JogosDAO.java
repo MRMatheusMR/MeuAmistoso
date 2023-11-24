@@ -13,24 +13,29 @@ public class JogosDAO {
     /**
      * Insere um novo jogo dentro do banco de dados
      * @param jogos exige que seja passado um objeto do tipo jogos
+     * @return 
      */
-    public void insert(Jogos jogos) {
+    public String insert(Jogos jogos) {
         // Inicia banco de dados
         if (Banco.jogos == null) {
             Banco.inicia();
         }
     
         // Verifica se já existe um jogo no mesmo local e data
+        System.out.println(jogoExistente(jogos));
         if (jogoExistente(jogos)) {
-            System.out.println("Já existe um jogo no mesmo local e data.");
-            return;
+            System.out.println("Ja existe um jogo no mesmo local e data.");
+            return "Ja existe um jogo no mesmo local e data.";
+        } else {
+            // Verifica se o ID já existe, se sim, obtém o próximo ID disponível
+            int novoId = obterProximoId();
+            jogos.setId(novoId);
+            
+            Banco.jogos.add(jogos);
+
+            return "Jogo criado com sucesso!";
         }
     
-        // Verifica se o ID já existe, se sim, obtém o próximo ID disponível
-        int novoId = obterProximoId();
-        jogos.setId(novoId);
-    
-        Banco.jogos.add(jogos);
     }
     
     // Método para obter o próximo ID disponível
@@ -110,8 +115,8 @@ public class JogosDAO {
      * @return true se já existe um jogo no mesmo local e data, false caso contrário
      */
     private boolean jogoExistente(Jogos novoJogo) {
-        for (Jogos jogo : Banco.jogos) {
-            if (jogo.getLocalDoJogo().equals(novoJogo.getLocalDoJogo()) && jogo.getDataDoJogo().equals(novoJogo.getDataDoJogo())) {
+        for (Jogos jogos : Banco.jogos) {
+            if (jogos.getLocalDoJogo().equals(novoJogo.getLocalDoJogo()) && jogos.getDataDoJogo().equals(novoJogo.getDataDoJogo())) {
                 return true;
             }
         }

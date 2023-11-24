@@ -21,7 +21,7 @@ public class Jogos {
     public String nomeDoOrganizador;
     public String localDoJogo;
     @JsonFormat(pattern = "dd/MM/yyyy")
-    public Date dataDoJogo;
+    public String dataDoJogo;
     public int numeroDeJogadores;
     public String descricao;
 
@@ -33,21 +33,17 @@ public class Jogos {
         this.id = id;
         this.nomeDoOrganizador = nomeDoOrganizador;
         this.localDoJogo = localDoJogo;
-        try {
-            this.dataDoJogo = new SimpleDateFormat("dd/MM/yyyy").parse(dataDoJogo);
-        } catch (ParseException ex) {
-            Logger.getLogger(Jogos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.dataDoJogo = dataDoJogo;
         this.numeroDeJogadores = numeroDeJogadores;   
         this.descricao = "Nenhuma";
     }
 
     //Cria construtor com todos os parametros e a descricao
-    public Jogos(int id, String nomeDoOrganizador, String localDoJogo, Date dataDoJogo, int numeroDeJogadores, String descricao) {
+    public Jogos(int id, String nomeDoOrganizador, String localDoJogo, String dataDoJogo2, int numeroDeJogadores, String descricao) {
         this.id = id;
         this.nomeDoOrganizador = nomeDoOrganizador;
         this.localDoJogo = localDoJogo;
-        this.dataDoJogo = dataDoJogo;
+        this.dataDoJogo = dataDoJogo2;
         this.numeroDeJogadores = numeroDeJogadores;
         this.descricao = descricao;
     }
@@ -77,11 +73,11 @@ public class Jogos {
         this.localDoJogo = localDoJogo;
     }
 
-    public Date getDataDoJogo() {
+    public String getDataDoJogo() {
         return dataDoJogo;
     }
 
-    public void setDataDoJogo(Date dataDoJogo) {
+    public void setDataDoJogo(String dataDoJogo) {
         this.dataDoJogo = dataDoJogo;
     }
 

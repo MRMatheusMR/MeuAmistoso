@@ -13,4 +13,7 @@ public class CriarJogoController {
         // Insere um novo jogo no banco de dados
         new JogosDAO().insert(jogos);
     }
+
+    public void JogosDAO(JogosDAO jogosDAO) {
+    }
 }

@@ -7,17 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class TesteMinhaClasse {
 
     @Test
     public void testeCriarJogo() {
+        System.out.println("CHAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         // Criação de objetos simulados (mocks)
         JogosDAO jogosDAO = mock(JogosDAO.class);
         CriarJogoController criarJogoController = new CriarJogoController();
-        criarJogoController.setJogosDAO(jogosDAO); // Injeta o mock de JogosDAO
+        criarJogoController.JogosDAO(jogosDAO); // Injeta o mock de JogosDAO
 
         // Dados de exemplo
         int id = 1;

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.meuamistoso.model.Jogos;
-
+import com.meuamistoso.model.Usuario;
 // Listar jogos
 import com.meuamistoso.controller.ListaJogosController;
+import com.meuamistoso.controller.LoginController;
 // Criar jogo
 import com.meuamistoso.controller.CriarJogoController;
 
@@ -55,9 +56,27 @@ public class JogoApplication {
 
     @PostMapping("/login")
     public String login(@RequestBody String requestBody) {
-        System.out.println("Endpoint: /login");
-        System.out.println("Parâmetros recebidos: " + requestBody);
-        return "Login realizado com sucesso!";
+        try {
+            System.out.println("Endpoint: /login");
+            System.out.println("Parâmetros recebidos: " + requestBody);
+    
+            // Converta a string JSON em um objeto Jogo
+            ObjectMapper objectMapper = new ObjectMapper();
+            Usuario usuario = objectMapper.readValue(requestBody, Usuario.class);
+    
+            // Agora você pode acessar os atributos do objeto Jogo
+            String email = usuario.getEmail();
+            String senha = usuario.getSenha();
+    
+            LoginController login = new LoginController();
+    
+            login.logarNoSistema(email, senha);
+    
+            return "Login realizado com sucesso!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Erro ao processar a solicitação.";
+        }
     }
 
     @GetMapping("/listarjogos")

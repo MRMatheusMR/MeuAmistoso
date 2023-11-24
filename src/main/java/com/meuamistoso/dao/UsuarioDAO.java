@@ -14,6 +14,12 @@ public class UsuarioDAO {
      * @param usuario exige que seja passado um objeto do tipo usuario
      */
     public void insert(Usuario usuario){
+
+        // Inicia banco de dados
+        if (Banco.usuario == null) {
+            Banco.inicia();
+        }
+
         Banco.usuario.add(usuario);
     }
     
@@ -68,6 +74,12 @@ public class UsuarioDAO {
      * @return Usuario encontrado no banco de dados
      */
     public Usuario selectPorEmailESenha(Usuario usuario){
+
+        // Inicia banco de dados
+        if (Banco.usuario == null) {
+            Banco.inicia();
+        }
+
         for (Usuario usuarioLista : Banco.usuario) {
             if(emailESenhaSaoIguais(usuarioLista,usuario)){
                 return usuarioLista;

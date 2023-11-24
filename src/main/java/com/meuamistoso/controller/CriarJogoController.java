@@ -2,6 +2,7 @@ package com.meuamistoso.controller;
 
 import com.meuamistoso.dao.JogosDAO;
 import com.meuamistoso.model.Jogos;
+import com.meuamistoso.model.JogosService;
 
 public class CriarJogoController {
 
@@ -9,11 +10,14 @@ public class CriarJogoController {
         Jogos jogos = new Jogos(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
 
         // Insere um novo jogo no banco de dados
+
         JogosDAO jogosDAO = new JogosDAO();
+
+        JogosService jogosService = new JogosService(jogosDAO);
 
         System.out.println(jogos);
 
-        return jogosDAO.insert(jogos);
+        return jogosService.insert(jogos);
     }
 
 }

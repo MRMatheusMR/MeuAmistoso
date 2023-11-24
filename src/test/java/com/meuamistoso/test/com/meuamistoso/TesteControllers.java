@@ -8,6 +8,7 @@ import com.meuamistoso.dao.JogosDAO;
 import com.meuamistoso.dao.UsuarioDAO;
 import com.meuamistoso.model.Jogos;
 import com.meuamistoso.model.Usuario;
+import com.meuamistoso.model.UsuarioService;
 
 import org.junit.jupiter.api.Test;
 
@@ -133,7 +134,9 @@ public class TesteControllers {
         // Chama o método registrarNoSistema
         String registrado = registroController.registrarNoSistema(nome, email, senha);
 
-        Usuario usuarioRegistrado = new UsuarioDAO().findByEmail(email);
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        Usuario usuarioRegistrado = new UsuarioService(usuarioDAO).findByEmail(email);
         assertNotNull(usuarioRegistrado);
         assertEquals(nome, usuarioRegistrado.getNome());
         assertEquals(email, usuarioRegistrado.getEmail());

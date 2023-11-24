@@ -2,6 +2,7 @@ package com.meuamistoso.controller;
 
 import com.meuamistoso.dao.UsuarioDAO;
 import com.meuamistoso.model.Usuario;
+import com.meuamistoso.model.UsuarioService;
 
 public class LoginController {
     //Valida o Login
@@ -9,7 +10,8 @@ public class LoginController {
         Usuario usuario = new Usuario(0, email, senha);
         //Verifica no Banco de Dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuarioAutenticado = usuarioDAO.selectPorEmailESenha(usuario);
+        UsuarioService usuarioService = new UsuarioService(usuarioDAO);
+        Usuario usuarioAutenticado = usuarioService.selectPorEmailESenha(usuario);
         
         //Direcionar para a Tela Principal caso esteja cadastrado
         if (usuarioAutenticado != null) {

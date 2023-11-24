@@ -1,21 +1,36 @@
 package com.meuamistoso.test;
 
+import com.meuamistoso.controller.CriarJogoController;
+import com.meuamistoso.dao.JogosDAO;
+import com.meuamistoso.model.Jogos;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 public class TesteMinhaClasse {
 
     @Test
-    public void testeMetodo1() {
-        // Coloque seu código de teste aqui
-        assertTrue(true); // Exemplo de assertiva
-    }
+    public void testeCriarJogo() {
+        // Criação de objetos simulados (mocks)
+        JogosDAO jogosDAO = mock(JogosDAO.class);
+        CriarJogoController criarJogoController = new CriarJogoController();
+        criarJogoController.setJogosDAO(jogosDAO); // Injeta o mock de JogosDAO
 
-    @Test
-    public void testeMetodo2() {
-        // Coloque outro código de teste aqui
-        assertEquals(2, 1 + 1); // Exemplo de assertiva
+        // Dados de exemplo
+        int id = 1;
+        String nomeDoOrganizador = "Organizador";
+        String localDoJogo = "Campo de Futebol";
+        Date dataDoJogo = new Date();
+        int numeroDeJogadores = 10;
+        String descricao = "Jogo amistoso";
+
+        // Executa o método a ser testado
+        criarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
+
+        // Verifica se o método insert da JogosDAO foi chamado corretamente
+        verify(jogosDAO, times(1)).insert(any(Jogos.class));
     }
 }

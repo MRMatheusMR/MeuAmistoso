@@ -1,0 +1,10 @@
+com\meuamistoso\controller\ListaJogosController.class
+com\meuamistoso\model\Usuario.class
+com\meuamistoso\model\Jogos.class
+com\meuamistoso\controller\CriarJogoController.class
+com\meuamistoso\dao\JogosDAO.class
+com\meuamistoso\controller\LoginController.class
+com\meuamistoso\dao\Banco.class
+com\meuamistoso\controller\RegistroController.class
+com\meuamistoso\JogoApplication.class
+com\meuamistoso\dao\UsuarioDAO.class

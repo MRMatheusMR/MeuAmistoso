@@ -14,6 +14,9 @@ public class Usuario {
     private String senha;
     public String nome;
 
+    // Construtor padrão vazio exigido por Jackson
+    public Usuario() {}
+
     public Usuario(int id, String email, String senha, String nome) {
         this.id = id;
         this.email = email;

@@ -14,6 +14,4 @@ public class CriarJogoController {
         new JogosDAO().insert(jogos);
     }
 
-    public void JogosDAO(JogosDAO jogosDAO) {
-    }
 }

@@ -101,5 +101,15 @@ public class JogosDAO {
         }
         return false;
     }
+
+    public Jogos findById(int id) {
+        for (Jogos jogo : Banco.jogos) {
+            if (jogo.getId() == id) {
+                return jogo;
+            }
+        }
+        return null; // Retorna null se o jogo com o ID fornecido não for encontrado
+    }
+    
     
 }

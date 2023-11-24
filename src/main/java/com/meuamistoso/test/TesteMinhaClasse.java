@@ -7,30 +7,38 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class TesteMinhaClasse {
 
-    @Test
-    public void testeCriarJogo() {
-        System.out.println("CHAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        // Criação de objetos simulados (mocks)
-        JogosDAO jogosDAO = mock(JogosDAO.class);
+   @Test
+    public void testCriarJogo() {
+        // Cria uma instância do CriarJogoController
         CriarJogoController criarJogoController = new CriarJogoController();
-        criarJogoController.JogosDAO(jogosDAO); // Injeta o mock de JogosDAO
 
-        // Dados de exemplo
+        // Define valores de teste
         int id = 1;
-        String nomeDoOrganizador = "Organizador";
-        String localDoJogo = "Campo de Futebol";
-        Date dataDoJogo = new Date();
-        int numeroDeJogadores = 10;
-        String descricao = "Jogo amistoso";
+        String nomeDoOrganizador = "Organizador Teste";
+        String localDoJogo = "Local Teste";
+        Date dataDoJogo = new Date(); // Pode ajustar conforme necessário
+        int numeroDeJogadores = 11;
+        String descricao = "Descrição do Jogo de Teste";
 
-        // Executa o método a ser testado
+        // Chama o método criarJogo
         criarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
 
-        // Verifica se o método insert da JogosDAO foi chamado corretamente
-        verify(jogosDAO, times(1)).insert(any(Jogos.class));
+        // Agora você pode realizar as asserções para verificar se o jogo foi inserido corretamente
+        // por exemplo, pode criar um método de leitura na JogosDAO e verificar se o jogo está no banco de dados
+
+        // Exemplo de asserções
+        Jogos jogoCriado = new JogosDAO().findById(id);
+        assertNotNull(jogoCriado);
+        assertEquals(nomeDoOrganizador, jogoCriado.getNomeDoOrganizador());
+        assertEquals(localDoJogo, jogoCriado.getLocalDoJogo());
+        assertEquals(dataDoJogo, jogoCriado.getDataDoJogo());
+        assertEquals(numeroDeJogadores, jogoCriado.getNumeroDeJogadores());
+        assertEquals(descricao, jogoCriado.getDescricao());
     }
 }

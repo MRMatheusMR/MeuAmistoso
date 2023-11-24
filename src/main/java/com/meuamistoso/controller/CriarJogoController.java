@@ -1,7 +1,5 @@
 package com.meuamistoso.controller;
 
-import java.util.Date;
-
 import com.meuamistoso.dao.JogosDAO;
 import com.meuamistoso.model.Jogos;
 

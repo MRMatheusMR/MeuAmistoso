@@ -14,23 +14,41 @@ public class JogosDAO {
      * Insere um novo jogo dentro do banco de dados
      * @param jogos exige que seja passado um objeto do tipo jogos
      */
-    public void insert(Jogos jogos){
-
+    public void insert(Jogos jogos) {
         // Inicia banco de dados
         if (Banco.jogos == null) {
             Banco.inicia();
         }
-
+    
         // Verifica se já existe um jogo no mesmo local e data
         if (jogoExistente(jogos)) {
             System.out.println("Já existe um jogo no mesmo local e data.");
             return;
         }
-
+    
+        // Verifica se o ID já existe, se sim, obtém o próximo ID disponível
+        int novoId = obterProximoId();
+        jogos.setId(novoId);
+    
         Banco.jogos.add(jogos);
         System.out.println("CHAMOU");
         System.out.println(jogos);
     }
+    
+    // Método para obter o próximo ID disponível
+    private int obterProximoId() {
+        int maiorId = 0;
+    
+        for (Jogos jogo : Banco.jogos) {
+            if (jogo.getId() > maiorId) {
+                maiorId = jogo.getId();
+            }
+        }
+    
+        // Retorna o próximo ID disponível (maior ID + 1)
+        return maiorId + 1;
+    }
+    
     
     /**
      * Atualiza um Objeto no banco de dados

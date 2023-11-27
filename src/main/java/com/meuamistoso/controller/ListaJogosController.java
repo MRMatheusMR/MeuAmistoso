@@ -15,7 +15,7 @@ public class ListaJogosController {
 
         JogosService jogosService = new JogosService(jogosDAO);
 
+        // Retorna a lista de jogos
         return jogosService.selectAll();
-        // listarJogos(jogos);
     }
 }

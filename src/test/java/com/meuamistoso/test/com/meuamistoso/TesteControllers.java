@@ -41,10 +41,7 @@ public class TesteControllers {
         // Chama o método criarJogo
         criarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
 
-        // Agora você pode realizar as asserções para verificar se o jogo foi inserido corretamente
-        // por exemplo, pode criar um método de leitura na JogosDAO e verificar se o jogo está no banco de dados
-
-        // Exemplo de asserções
+        // Verificações
         Jogos jogoCriado = new JogosDAO().findById(id);
         assertNotNull(jogoCriado);
         assertEquals(nomeDoOrganizador, jogoCriado.getNomeDoOrganizador());
@@ -81,10 +78,8 @@ public class TesteControllers {
         // Chama o método getJogos
         ArrayList<Jogos> jogos = listaJogosController.getJogos();
 
-        // Verifica se a lista não é nula
+        // Verificações
         assertNotNull(jogos);
-
-        // Adicione outras asserções conforme necessário, por exemplo, verifique se a lista não está vazia
         assertFalse(jogos.isEmpty());
 
         // Imprime os jogos (opcional)
@@ -137,6 +132,8 @@ public class TesteControllers {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         Usuario usuarioRegistrado = new UsuarioService(usuarioDAO).findByEmail(email);
+
+        // Verificações
         assertNotNull(usuarioRegistrado);
         assertEquals(nome, usuarioRegistrado.getNome());
         assertEquals(email, usuarioRegistrado.getEmail());
@@ -157,6 +154,8 @@ public class TesteControllers {
         // Chama o método registrarNoSistema
         String registrado = registroController.registrarNoSistema(nome, email, senha);
 
+
+        // Verificações
         assertEquals(registrado, "Usuario nao registrado");
     }
 
@@ -172,7 +171,8 @@ public class TesteControllers {
 
         // Chama o método registrarNoSistema
         String registrado = registroController.registrarNoSistema(nome, email, senha);
-        System.out.println(registrado);
+
+        // Verificações
         assertEquals(registrado, "Usuario nao registrado");
     }
 

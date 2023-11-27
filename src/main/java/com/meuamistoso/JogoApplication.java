@@ -30,11 +30,11 @@ public class JogoApplication {
             System.out.println("Endpoint: /criarjogo");
             System.out.println("Parâmetros recebidos: " + requestBody);
 
-            // Converta a string JSON em um objeto Jogo
+            // Converte a string JSON em um objeto Jogo
             ObjectMapper objectMapper = new ObjectMapper();
             Jogos jogos = objectMapper.readValue(requestBody, Jogos.class);
 
-            // Agora você pode acessar os atributos do objeto Jogo
+            // Acessando os atributos do objeto Jogo
             Integer id = jogos.getId();
             String nomeDoOrganizador = jogos.getNomeDoOrganizador();
             String localDoJogo = jogos.getLocalDoJogo();
@@ -58,11 +58,11 @@ public class JogoApplication {
             System.out.println("Endpoint: /login");
             System.out.println("Parâmetros recebidos: " + requestBody);
     
-            // Converta a string JSON em um objeto Jogo
+            // Converte a string JSON em um objeto Jogo
             ObjectMapper objectMapper = new ObjectMapper();
             Usuario usuario = objectMapper.readValue(requestBody, Usuario.class);
     
-            // Agora você pode acessar os atributos do objeto Jogo
+            // Acessando os atributos do objeto Jogo
             String email = usuario.getEmail();
             String senha = usuario.getSenha();
             
@@ -90,11 +90,11 @@ public class JogoApplication {
             System.out.println("Endpoint: /registrar");
             System.out.println("Parâmetros recebidos: " + requestBody);
     
-            // Converta a string JSON em um objeto Jogo
+            // Converte a string JSON em um objeto Jogo
             ObjectMapper objectMapper = new ObjectMapper();
             Usuario usuario = objectMapper.readValue(requestBody, Usuario.class);
     
-            // Agora você pode acessar os atributos do objeto Jogo
+            // Acessando os atributos do objeto Jogo
             String nome = usuario.getNome();
             String email = usuario.getEmail();
             String senha = usuario.getSenha();

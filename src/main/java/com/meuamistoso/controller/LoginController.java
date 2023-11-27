@@ -11,9 +11,9 @@ public class LoginController {
         //Verifica no Banco de Dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioService usuarioService = new UsuarioService(usuarioDAO);
-        Usuario usuarioAutenticado = usuarioService.selectPorEmailESenha(usuario);
+        Usuario usuarioAutenticado = usuarioService.selectPorEmailESenha(usuario); // Selecionar usuario pelo email e senha
         
-        //Direcionar para a Tela Principal caso esteja cadastrado
+        // Retornar status da autenticação
         if (usuarioAutenticado != null) {
             return "Usuario foi logado no sistema";
         } else {

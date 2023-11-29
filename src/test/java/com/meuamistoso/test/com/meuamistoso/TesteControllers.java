@@ -24,9 +24,6 @@ public class TesteControllers {
 
     @Test
     public void testCriarJogo() {
-        // Cria uma instância do CriarJogoController
-        CriarJogoController criarJogoController = new CriarJogoController();
-
         // Define valores de teste
         int id = 7; // colocar id valido 7 ou 8 - proximo id disponivel no banco de dados - id 7 criado no teste de rotas ao executar todos os testes
         String nomeDoOrganizador = "Organizador Teste";

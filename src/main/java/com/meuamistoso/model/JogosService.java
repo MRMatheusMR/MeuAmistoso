@@ -14,7 +14,6 @@ public class JogosService {
     }
 
     public String insert(Jogos jogos) {
-
         // Inicia banco de dados
         if (Banco.jogos == null) {
             Banco.inicia();
@@ -34,40 +33,10 @@ public class JogosService {
 
             return "Jogo criado com sucesso!";
         }
-
-    }
-
-    public boolean update(Jogos jogos) {
-        for (int i = 0; i < Banco.jogos.size(); i++) {
-            if(idIguais(Banco.jogos.get(i),jogos)){
-                jogosDAO.update(i,jogos);
-                return true;
-            }
-        }
-        return false;    
-    }
-
-    public boolean delete(Jogos jogos) {
-
-        // Inicia banco de dados
-        if (Banco.jogos == null) {
-            Banco.inicia();
-        }
-
-        for (Jogos jogosLista : Banco.jogos) {
-            if(idIguais(jogosLista,jogos)){
-                jogosDAO.delete(jogosLista);
-            }
-        }
-        return false;
     }
 
     public ArrayList<Jogos> selectAll() {
         return jogosDAO.selectAll();
-    }
-
-    public Jogos findById(int id) {
-        return jogosDAO.findById(id);
     }
 
     private int obterProximoId() {
@@ -84,27 +53,18 @@ public class JogosService {
     }
 
     /**
-     * Compara se dois objetos tem a propriedade id igual
-     * @param jogos
-     * @param jogosAMarcar
-     * @return verdadeiro caso os id forem iguais e falso se nao forem
-     */
-    private boolean idIguais(Jogos jogos, Jogos jogosAMarcar) {
-        return jogos.getId() ==  jogosAMarcar.getId();
-    }
-
-    /**
      * Verifica se já existe um jogo no mesmo local e data
      * @param novoJogo
      * @return true se já existe um jogo no mesmo local e data, false caso contrário
      */
     private boolean jogoExistente(Jogos novoJogo) {
-        for (Jogos jogos : Banco.jogos) {
-            if (jogos.getLocalDoJogo().equals(novoJogo.getLocalDoJogo()) && jogos.getDataDoJogo().equals(novoJogo.getDataDoJogo())) {
+        for (Jogos jogo : Banco.jogos) {
+            if (jogo.getLocalDoJogo().equals(novoJogo.getLocalDoJogo()) && jogo.getDataDoJogo().equals(novoJogo.getDataDoJogo())) {
                 return true;
             }
         }
         return false;
     }
+
 }
 

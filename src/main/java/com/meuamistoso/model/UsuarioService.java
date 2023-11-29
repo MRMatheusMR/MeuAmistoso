@@ -51,48 +51,6 @@ public class UsuarioService {
     }
 
     /**
-     * Atualiza um Objeto no banco de dados
-     * @param usuario
-     * @return 
-     */
-    public boolean update(Usuario usuario){
-
-        for (int i = 0; i < Banco.usuario.size(); i++) {
-            if(idSaoIguais(Banco.usuario.get(i),usuario)){
-                usuarioDAO.update(i, usuario);
-                return true;
-            }
-        }
-        return false;      
-
-    }
-
-    /**
-     * Deleta um objeto do banco de dados pelo id do usuario passado
-     * @param usuario
-     * @return 
-     */
-    public boolean delete(Usuario usuario){
-        for (Usuario usuarioLista : Banco.usuario) {
-            if(idSaoIguais(usuarioLista,usuario)){
-                usuarioDAO.delete(usuarioLista);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Retorna um arraylist com todos os usuarios do banco de dados
-     * @return uma lista com todos os registros do banco
-     */
-    public ArrayList<Usuario> selectAll(){
-
-        return usuarioDAO.selectAll();
-
-    }
-
-    /**
      * Retorna um Objeto do tipo usuario se a funcao encontrar o usuario passado como parâmetro no banco, para considerar sao usado nome e senha
      * @param usuario
      * @return Usuario encontrado no banco de dados
@@ -116,16 +74,6 @@ public class UsuarioService {
      */
     private boolean emailESenhaSaoIguais(Usuario usuario, Usuario usuarioAPesquisar) {
         return usuario.getEmail().equals(usuarioAPesquisar.getEmail()) && usuario.getSenha().equals(usuarioAPesquisar.getSenha());
-    }
-
-    /**
-     * Compara se dois objetos tem a propriedade id igual
-     * @param usuario
-     * @param usuarioAComparar
-     * @return verdadeiro caso os id forem iguais e falso se nao forem
-     */
-    private boolean idSaoIguais(Usuario usuario, Usuario usuarioAComparar) {
-        return usuario.getId() ==  usuarioAComparar.getId();
     }
 
     /**

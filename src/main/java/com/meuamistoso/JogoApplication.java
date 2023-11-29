@@ -64,9 +64,7 @@ public class JogoApplication {
             String email = usuario.getEmail();
             String senha = usuario.getSenha();
             
-            LoginController login = new LoginController();
-            
-            return login.logarNoSistema(email, senha);
+            return LoginController.logarNoSistema(email, senha);
     
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,10 +74,9 @@ public class JogoApplication {
 
     @GetMapping("/listarjogos")
     public ArrayList<Jogos> listarJogos() {
-        ListaJogosController listajogos = new ListaJogosController();
         System.out.println("Endpoint: /listarjogos");   
-        System.out.println(listajogos.getJogos());
-        return listajogos.getJogos();
+        System.out.println(ListaJogosController.getJogos());
+        return ListaJogosController.getJogos();
     }
 
     @PostMapping("/registrar")
@@ -97,13 +94,12 @@ public class JogoApplication {
             String email = usuario.getEmail();
             String senha = usuario.getSenha();
     
-            RegistroController registro = new RegistroController();
-    
-            return registro.registrarNoSistema(nome, email, senha);
+            return RegistroController.registrarNoSistema(nome, email, senha);
     
         } catch (Exception e) {
             e.printStackTrace();
             return "Erro ao processar a solicitação.";
         }
     }
+
 }

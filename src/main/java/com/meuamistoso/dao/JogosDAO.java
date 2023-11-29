@@ -8,8 +8,7 @@ import java.util.ArrayList;
  * @author Henrique
  */
 public class JogosDAO {
-    
-    
+
     /**
      * Insere um novo jogo dentro do banco de dados
      * @param jogos exige que seja passado um objeto do tipo jogos
@@ -23,30 +22,7 @@ public class JogosDAO {
         Banco.jogos.add(jogos);
     
     }
-    
-    
-    /**
-     * Atualiza um Objeto no banco de dados
-     * @param jogos
-     * @param i
-     * @param jogos
-     * @return 
-     */
-    public boolean update(int i, Jogos jogos){
-        Banco.jogos.set(i, jogos);
-        return true;
-    }
-    
-    /**
-     * Deleta um objeto do banco de dados pelo id do jogo passado
-     * @param jogos
-     * @return 
-     */
-    public boolean delete(Jogos jogoslista){
-        Banco.jogos.remove(jogoslista);
-        return true;
-    }
-    
+
     /**
      * Retorna um arraylist com todos os jogos do banco de dados
      * @return uma lista com todos os registros do banco

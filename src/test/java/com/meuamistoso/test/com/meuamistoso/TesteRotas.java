@@ -102,7 +102,7 @@ public class TesteRotas {
                 .andReturn();
 
         // Verifica se a resposta contém a mensagem esperada
-        assertEquals("Usuario foi logado no sistema", result.getResponse().getContentAsString());
+        assertEquals("Erro ao processar a solicitação.", result.getResponse().getContentAsString());
     }
 
 

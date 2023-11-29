@@ -6,7 +6,7 @@ import com.meuamistoso.model.UsuarioService;
 
 public class LoginController {
     //Valida o Login
-     public String logarNoSistema(String email, String senha) {
+     public static String logarNoSistema(String email, String senha) {
         Usuario usuario = new Usuario(0, email, senha);
         //Verifica no Banco de Dados
         UsuarioDAO usuarioDAO = new UsuarioDAO();

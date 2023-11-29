@@ -12,12 +12,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 public class Jogos {
     private int id;
-    public String nomeDoOrganizador;
-    public String localDoJogo;
+    private String nomeDoOrganizador;
+    private String localDoJogo;
     @JsonFormat(pattern = "dd/MM/yyyy")
-    public String dataDoJogo;
-    public int numeroDeJogadores;
-    public String descricao;
+    private String dataDoJogo;
+    private int numeroDeJogadores;
+    private String descricao;
 
     // Construtor padrão vazio exigido por Jackson
     public Jogos() {}

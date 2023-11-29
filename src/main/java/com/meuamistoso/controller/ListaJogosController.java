@@ -6,10 +6,9 @@ import com.meuamistoso.model.JogosService;
 
 import java.util.ArrayList;
 
-
-
 public class ListaJogosController {
-    public ArrayList<Jogos> getJogos() {
+
+    public static ArrayList<Jogos> getJogos() {
         //Buscar Lista de Jogos no banco de dados
         JogosDAO jogosDAO = new JogosDAO();
 
@@ -18,4 +17,5 @@ public class ListaJogosController {
         // Retorna a lista de jogos
         return jogosService.selectAll();
     }
+
 }

@@ -12,7 +12,7 @@ public class Usuario {
     private int id;
     private String email;
     private String senha;
-    public String nome;
+    private String nome;
 
     // Construtor padrão vazio exigido por Jackson
     public Usuario() {}

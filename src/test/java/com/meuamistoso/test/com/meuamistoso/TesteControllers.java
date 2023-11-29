@@ -69,11 +69,8 @@ public class TesteControllers {
 
     @Test
     public void testGetJogos() {
-        // Cria uma instância do ListaJogosController
-        ListaJogosController listaJogosController = new ListaJogosController();
-
         // Chama o método getJogos
-        ArrayList<Jogos> jogos = listaJogosController.getJogos();
+        ArrayList<Jogos> jogos = ListaJogosController.getJogos();
 
         // Verificações
         assertNotNull(jogos);
@@ -87,44 +84,34 @@ public class TesteControllers {
 
     @Test
     public void testLogarNoSistemaUsuarioAutenticado() {
-        // Cria uma instância do LoginController
-        LoginController loginController = new LoginController();
-
         // Define valores de teste
         String email = "email@teste.teste";
         String senha = "Senha@123";
 
         // Chama o método logarNoSistema
-        String logado = loginController.logarNoSistema(email, senha);
+        String logado = LoginController.logarNoSistema(email, senha);
         assertEquals(logado, "Usuario foi logado no sistema");
     }
 
     @Test
     public void testLogarNoSistemaUsuarioNaoAutenticado() {
-        // Cria uma instância do LoginController
-        LoginController loginController = new LoginController();
-
         // Define valores de teste para um usuário não autenticado
         String email = "usuario@naoautenticado.com";
         String senha = "senhaErrada";
 
         // Chama o método logarNoSistema
-        loginController.logarNoSistema(email, senha);
-
+        LoginController.logarNoSistema(email, senha);
     }
 
     @Test
     public void testRegistrarNoSistema() {
-        // Cria uma instância do RegistroController
-        RegistroController registroController = new RegistroController();
-
         // Define valores de teste
         String nome = "Novo Usuario";
         String email = "novo.usuario@teste.com";
         String senha = "Senha@123";
 
         // Chama o método registrarNoSistema
-        String registrado = registroController.registrarNoSistema(nome, email, senha);
+        String registrado = RegistroController.registrarNoSistema(nome, email, senha);
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
@@ -140,17 +127,13 @@ public class TesteControllers {
 
     @Test
     public void testRegistrarMesmoUsernameNoSistema() {
-        // Cria uma instância do RegistroController
-        RegistroController registroController = new RegistroController();
-
         // Define valores de teste
         String nome = "Teste";
         String email = "email@testee.teste";
         String senha = "Senha@123";
 
         // Chama o método registrarNoSistema
-        String registrado = registroController.registrarNoSistema(nome, email, senha);
-
+        String registrado = RegistroController.registrarNoSistema(nome, email, senha);
 
         // Verificações
         assertEquals(registrado, "Usuario nao registrado");
@@ -158,16 +141,13 @@ public class TesteControllers {
 
     @Test
     public void testRegistrarMesmoEmailNoSistema() {
-        // Cria uma instância do RegistroController
-        RegistroController registroController = new RegistroController();
-
         // Define valores de teste
         String nome = "Testee";
         String email = "email@teste.teste";
         String senha = "Senha@123";
 
         // Chama o método registrarNoSistema
-        String registrado = registroController.registrarNoSistema(nome, email, senha);
+        String registrado = RegistroController.registrarNoSistema(nome, email, senha);
 
         // Verificações
         assertEquals(registrado, "Usuario nao registrado");

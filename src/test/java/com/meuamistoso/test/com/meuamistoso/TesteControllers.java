@@ -39,7 +39,7 @@ public class TesteControllers {
         String descricao = "Descrição do Jogo de Teste";
 
         // Chama o método criarJogo
-        criarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
+        CriarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
 
         // Verificações
         Jogos jogoCriado = new JogosDAO().findById(id);
@@ -53,9 +53,6 @@ public class TesteControllers {
 
     @Test
     public void testCriarJogoMesmoLocal() {
-        // Cria uma instância do CriarJogoController
-        CriarJogoController criarJogoController = new CriarJogoController();
-
         // Define valores de teste
         int id = 7; // colocar id valido 7 ou 8 - proximo id disponivel no banco de dados - id 7 criado no teste de rotas ao executar todos os testes
         String nomeDoOrganizador = "Organizador Teste";
@@ -66,7 +63,7 @@ public class TesteControllers {
         String descricao = "Descrição do Jogo de Teste";
 
         // Chama o método criarJogo
-        String jogocriado = criarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
+        String jogocriado = CriarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
         assertEquals(jogocriado, "Ja existe um jogo no mesmo local e data.");
     }
 

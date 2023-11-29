@@ -6,7 +6,7 @@ import com.meuamistoso.model.JogosService;
 
 public class CriarJogoController {
 
-    public String criarJogo(int id, String nomeDoOrganizador, String localDoJogo, String dataDoJogo, int numeroDeJogadores, String descricao) {
+    public static String criarJogo(int id, String nomeDoOrganizador, String localDoJogo, String dataDoJogo, int numeroDeJogadores, String descricao) {
         Jogos jogos = new Jogos(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
         
         JogosDAO jogosDAO = new JogosDAO();

@@ -42,9 +42,7 @@ public class JogoApplication {
             Integer numeroDeJogadores = jogos.getNumeroDeJogadores();
             String descricao = jogos.getDescricao();
 
-            CriarJogoController criarjogo = new CriarJogoController();
-
-            return criarjogo.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
+            return CriarJogoController.criarJogo(id, nomeDoOrganizador, localDoJogo, dataDoJogo, numeroDeJogadores, descricao);
 
         } catch (Exception e) {
             e.printStackTrace();
